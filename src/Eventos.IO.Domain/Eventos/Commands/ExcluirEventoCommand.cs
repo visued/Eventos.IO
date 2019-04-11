@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Eventos.IO.Domain.Eventos.Commands
 {
-    class ExcluirEventoCommand : BaseEventoCommand
+    public class ExcluirEventoCommand : BaseEventoCommand
     {
         public ExcluirEventoCommand(Guid id)
         {

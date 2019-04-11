@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Eventos.IO.Domain.Eventos.Commands
 {
-    class AtualizarEventoCommand : BaseEventoCommand
+    public class AtualizarEventoCommand : BaseEventoCommand
     {
         public AtualizarEventoCommand(
             Guid id,
