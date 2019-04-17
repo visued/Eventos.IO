@@ -29,6 +29,11 @@ namespace Eventos.IO.Domain.Eventos
 
         }
 
+        private Evento()
+        {
+
+        }
+
         public string Nome { get; private set; }
         public string DescricaoCurta { get; private set; }
         public string DescricaoLonga { get; private set; }
@@ -115,5 +120,34 @@ namespace Eventos.IO.Domain.Eventos
                 .Length(2, 150).WithMessage("O nome do organizador precisa ter entre 2 e 150 caracteres");
         }
         #endregion
+
+        public static class EventoFactory
+        {
+            public static Evento NovoEventoCompleto(Guid id, string nome, string descCurta, string descLonga,
+                DateTime dataInicio, DateTime dataFim, bool gratuito, decimal valor, bool online, string nomeEmpresa,
+                Guid? organizadorId)
+            {
+                var evento = new Evento()
+                {
+                    Id = id,
+                    Nome = nome,
+                    DescricaoCurta = descCurta,
+                    DescricaoLonga = descLonga,
+                    DataInicio = dataInicio,
+                    DataFim = dataFim,
+                    Gratuito = gratuito,
+                    Valor = valor,
+                    Online = online,
+                    NomeEmpresa = nomeEmpresa,
+
+                };
+                if (organizadorId != null)
+                    evento.Organizador = new Organizador(organizadorId.Value);
+
+                return evento;
+
+
+            }
+        }
     }
 }

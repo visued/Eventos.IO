@@ -32,3 +32,4 @@ namespace Eventos.IO.Domain.Eventos.Events
 
         }
     }
+}
