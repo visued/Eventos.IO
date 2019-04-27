@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Eventos.IO.Domain.Eventos.Events
 {
-    public abstract class EventoAtualizadoEvent : BaseEventoEvent
+    public  class EventoAtualizadoEvent : BaseEventoEvent
     {
         public EventoAtualizadoEvent(
             Guid id,

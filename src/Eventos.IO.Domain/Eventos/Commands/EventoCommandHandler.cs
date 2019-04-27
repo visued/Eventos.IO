@@ -60,7 +60,7 @@ namespace Eventos.IO.Domain.Eventos.Commands
 
             if (Commit())
             {
-                _bus.RaiseEvent(new EventoAtualizadoEvent());
+                _bus.RaiseEvent(new EventoAtualizadoEvent(evento.Id, evento.Nome, evento.DescricaoCurta, evento.DescricaoLonga, evento.DataInicio, evento.DataFim, evento.Gratuito, evento.Valor, evento.Online, evento.NomeEmpresa));
             }
         }
 
