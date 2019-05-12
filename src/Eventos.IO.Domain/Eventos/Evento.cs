@@ -4,6 +4,7 @@ using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using Eventos.IO.Domain.Eventos.Events;
 
 namespace Eventos.IO.Domain.Eventos
 {
@@ -44,6 +45,7 @@ namespace Eventos.IO.Domain.Eventos
         public decimal Valor { get; private set; }
         public bool Online { get; private set; }
         public string NomeEmpresa { get; private set; }
+        public bool Excluido { get; private set; }
         public ICollection<Tags> Tags { get; private set; }   
         public Guid? CategoriaId { get; private set; }
         public Guid? EnderecoId { get; private set; }
@@ -64,7 +66,14 @@ namespace Eventos.IO.Domain.Eventos
 
         public void AtribuirCategoria(Categoria categoria)
         {
-            //if(!categoria.)
+            if (!categoria.EhValido()) return;
+            Categoria = categoria;
+        }
+
+        public void ExcluirEvento()
+        {
+            // TODO: Deve validar alguma regra?
+            Excluido = true;
         }
 
         public override bool EhValido()
@@ -157,7 +166,7 @@ namespace Eventos.IO.Domain.Eventos
         {
             public static Evento NovoEventoCompleto(Guid id, string nome, string descCurta, string descLonga,
                 DateTime dataInicio, DateTime dataFim, bool gratuito, decimal valor, bool online, string nomeEmpresa,
-                Guid? organizadorId, Endereco endereco, Categoria categoria)
+                Guid? organizadorId, Endereco endereco, Guid categoriaId)
             {
                 var evento = new Evento()
                 {
@@ -172,10 +181,11 @@ namespace Eventos.IO.Domain.Eventos
                     Online = online,
                     NomeEmpresa = nomeEmpresa,
                     Endereco = endereco,
-                    Categoria = categoria
+                    CategoriaId = categoriaId
                 };
-                if (organizadorId != null)
-                    evento.Organizador = new Organizador(organizadorId.Value);
+                if (organizadorId.HasValue)
+                    evento.OrganizadorId = organizadorId.Value;
+                
 
                 if (online)
                     evento.Endereco = null;
