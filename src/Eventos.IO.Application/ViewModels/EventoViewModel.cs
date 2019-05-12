@@ -56,6 +56,7 @@ namespace Eventos.IO.Application.ViewModels
 
         public EnderecoViewModel Endereco { get; set; }
         public CategoriaViewModel Categoria { get; set; }
-
+        public Guid CategoriaId { get; set; }
+        public Guid OrganizadorId { get; set; }
     }
 }

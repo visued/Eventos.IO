@@ -5,12 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="AutoMapper\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="automapper" Version="8.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
   </ItemGroup>
 
